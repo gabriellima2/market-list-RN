@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ProductInput } from "../components/Products/ProductInput";
@@ -11,7 +11,7 @@ export const HomeScreen = () => {
 	const { list } = useSelector(useProductSelect);
 
 	return (
-		<>
+		<View style={styles.container}>
 			<StatusBar style="auto"/>
 
 			<Title>
@@ -20,9 +20,28 @@ export const HomeScreen = () => {
 
 			<ProductInput />
 			{!list.length
-				? <Text>Lista Vazia! Adicione produtos acima</Text>
+				? <Text
+						style={styles.emptyText}
+						>
+							Lista Vazia! Adicione produtos acima
+					</Text>
 				:<ProductList />
 			}
-		</>
+		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		paddingLeft: 16,
+		paddingRight: 16,
+	},
+	emptyText: {
+		alignSelf: "center",
+		marginTop: 32,
+
+		fontSize: 16,
+		fontWeight: "bold",
+		color: "#F06363"
+	}
+})
