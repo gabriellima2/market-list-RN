@@ -1,16 +1,28 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, View } from "react-native";
+import { Text } from "react-native";
+import { useSelector } from "react-redux";
+
+import { ProductInput } from "../components/Products/ProductInput";
 import { ProductList } from "../components/Products/ProductList";
 import { Title } from "../components/Title";
+import { useProductSelect } from "../redux/slices/productSlice";
 
-export const HomeScreen = () => (
-  <View>
-    <StatusBar style="auto"/>
+export const HomeScreen = () => {
+	const { list } = useSelector(useProductSelect);
 
-		<Title>
-			Adicione produtos para a sua lista
-		</Title>
+	return (
+		<>
+			<StatusBar style="auto"/>
 
-		<ProductList />
-  </View>
-)
+			<Title>
+				MARKETLIST
+			</Title>
+
+			<ProductInput />
+			{!list.length
+				? <Text>Lista Vazia! Adicione produtos acima</Text>
+				:<ProductList />
+			}
+		</>
+	);
+}

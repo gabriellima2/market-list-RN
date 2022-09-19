@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	list: [{
-		name: "Salgadinho"
-	}],
+	list: [],
 	total: 0
 }
 
@@ -11,13 +9,26 @@ export const productSlice = createSlice({
 	name: "products",
 	initialState,
 	reducers: {
-		add: (state, action) => {},
-		remove: (state, action) => {},
-		edit: (state, action) => {}
+		addProduct: (state, action) => {
+			const product = {
+				id: Math.random(),
+				name: action.payload.name
+			};
+
+			state.list.push(product);
+		},
+		removeProduct: (state, action) => {
+			const listWithRemovedProduct = state.list.filter((item) => (
+				item.id !== action.payload.id && item
+			));
+
+			state.list = listWithRemovedProduct;
+		},
+		editProduct: (state, action) => {}
 	}
 })
 
-export const { add, remove, edit } = productSlice.actions;
+export const { addProduct, removeProduct, editProduct } = productSlice.actions;
 
 export const useProductSelect = (state) => state.products;
 
