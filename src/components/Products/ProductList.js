@@ -1,4 +1,4 @@
-import { Button, FlatList, Text, View } from "react-native"
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 
 import { removeProduct, useProductSelect } from "../../redux/slices/productSlice"
@@ -15,11 +15,21 @@ const ProductItem = (props) => {
 	};
 
 	return (
-		<View>
-			<Text>{props.name}</Text>
-			<View>
-				<Button title="Editar produto" onPress={() => handlePress("edit")} />
-				<Button title="Remover produto" onPress={() => handlePress("remove")} />
+		<View style={styles.container}>
+			<Text style={styles.name}>{props.name}</Text>
+			<View style={styles.buttons}>
+				<TouchableOpacity
+					style={styles.editButton}
+					onPress={() => handlePress("edit")}
+				>
+					<Text>Editar</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.removeButton}
+					onPress={() => handlePress("remove")}
+				>
+					<Text>Remover</Text>
+				</TouchableOpacity>
 			</View>
 		</View>
 	)
@@ -35,3 +45,38 @@ export const ProductList = () => {
 		/>
 	)
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+
+		marginTop: 32
+	},
+	name: {
+		fontSize: 20,
+
+	},
+	buttons: {
+		alignItems: "flex-start"
+	},
+	editButton: {
+		width: 100,
+
+		alignItems: "center",
+
+		borderRadius: 4,
+		padding: 8,
+		backgroundColor: "#f1f1f1",
+	},
+	removeButton: {
+		width: 100,
+
+		color: "#f1f1f1",
+		alignItems: "center",
+
+		borderRadius: 4,
+		padding: 8,
+		backgroundColor: "#F06363",
+	}
+})

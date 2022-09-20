@@ -1,47 +1,50 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 
-import { ProductInput } from "../components/Products/ProductInput";
+import { AddNewProduct } from "../components/Products/AddNewProduct";
 import { ProductList } from "../components/Products/ProductList";
+import { NotFound } from "../components/NotFound";
 import { Title } from "../components/Title";
+
 import { useProductSelect } from "../redux/slices/productSlice";
 
 export const HomeScreen = () => {
 	const { list } = useSelector(useProductSelect);
 
 	return (
-		<View style={styles.container}>
-			<StatusBar style="auto"/>
+		<SafeAreaView style={styles.safeArea}>
+			<View style={styles.container}>
+				<StatusBar style="auto"/>
 
-			<Title>
-				MARKETLIST
-			</Title>
+				<Title>
+					MARKETLIST
+				</Title>
 
-			<ProductInput />
-			{!list.length
-				? <Text
-						style={styles.emptyText}
-						>
-							Lista Vazia! Adicione produtos acima
-					</Text>
-				:<ProductList />
-			}
-		</View>
+				<AddNewProduct />
+
+				{!list.length
+					? (
+						<NotFound>
+							Lista Vazia! Adicione produtos
+						</NotFound>
+					)
+					:<ProductList />
+				}
+			</View>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		paddingLeft: 16,
-		paddingRight: 16,
+	safeArea: {
+		flex: 1,
+		color: "#f1f1f1",
+		backgroundColor: "#111111"
 	},
-	emptyText: {
-		alignSelf: "center",
-		marginTop: 32,
-
-		fontSize: 16,
-		fontWeight: "bold",
-		color: "#F06363"
-	}
+	container: {
+		flex: 1,
+		color: "#f1f1f1",
+		paddingHorizontal: 16,
+	},
 })

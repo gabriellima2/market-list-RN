@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
 	title: {
 		marginTop: 40,
 
+		color: "#f1f1f1",
 		fontWeight: "bold",
 		fontSize: 24,
 		letterSpacing: 2
