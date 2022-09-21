@@ -30,7 +30,7 @@ $ yarn android / npm run android / expo start --android
 OU (IOS)
 $ yarn ios / npm run ios / expo start --ios
 
-4. O app será aberto no aplicativo Expo GO, então Scaneie o QRCode ou Digite a URL
+4. O app será aberto no aplicativo Expo GO, então escaneie o QRCode ou digite a URL informada
 ```
 
 <p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
