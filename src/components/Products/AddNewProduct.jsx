@@ -18,8 +18,8 @@ export const AddNewProduct = () => {
 	const handleAddProduct = (value) => {
 		if (!value) return;
 
-		dispatch(addProduct({ name: value }));
 		setIsOpen(false)
+		dispatch(addProduct({ name: value }));
 	}
 
 	return (

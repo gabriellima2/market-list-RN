@@ -7,7 +7,7 @@ export const ProductInput = ({ buttonText, ...props }) => {
 	const [value, setValue] = useState(props.specificValue || "");
 
 	const handleConfirmButtonPress = () => {
-		props.handlePress(value);
+		props.handlePress(value.trim());
 		setValue("");
 	}
 
