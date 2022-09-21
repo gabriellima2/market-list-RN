@@ -2,9 +2,16 @@ import { useState } from "react"
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 
-import { editProduct, removeProduct, useProductSelect } from "../../redux/slices/productSlice"
+import {
+	editProduct,
+	removeProduct,
+	useProductSelect
+} from "../../redux/slices/productSlice"
+
 import { Modal } from "../Modal"
 import { ProductInput } from "./ProductInput"
+
+import { Themes } from "../../themes"
 
 const ProductItem = (props) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -44,9 +51,21 @@ const ProductItem = (props) => {
 					<Text style={styles.removeButtonText}>Del</Text>
 				</TouchableOpacity>
 			</View>
-			<Modal title="Editar Produto" handleClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
-				<ProductInput buttonText="Editar" placeholder="Digite o novo nome" handlePress={handleEdit} specificValue={props.name} />
-			</Modal>
+
+			{modalIsOpen &&
+				<Modal
+					title="Editar Produto"
+					isOpen={modalIsOpen}
+					handleClose={() => setModalIsOpen(false)}
+				>
+					<ProductInput
+						buttonText="Editar"
+						placeholder="Digite o novo nome"
+						handlePress={handleEdit}
+						specificValue={props.name}
+					/>
+				</Modal>
+			}
 		</View>
 	)
 }
@@ -79,12 +98,12 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		marginVertical: 4,
 
-		color: "#f1f1f1",
+		color: Themes.colors.font,
 
-		backgroundColor: "#202020",
+		backgroundColor: Themes.colors.bgOverlay,
 	},
 	name: {
-		color: "#f1f1f1",
+		color: Themes.colors.font,
 		fontWeight: "bold",
 		fontSize: 16
 	},
@@ -94,18 +113,18 @@ const styles = StyleSheet.create({
 	editButton: {
 		padding: 8,
 		borderRadius: 8,
-		backgroundColor: "#111111",
+		backgroundColor: Themes.colors.bgMain,
 		marginBottom: 8,
 	},
 	editButtonText: {
-		color: "#f1f1f1"
+		color: Themes.colors.font
 	},
 	removeButton: {
 		padding: 8,
 		borderRadius: 8,
-		backgroundColor: "#E93333",
+		backgroundColor: Themes.colors.alert,
 	},
 	removeButtonText: {
-		color: "#f1f1f1"
+		color: Themes.colors.font
 	}
 })

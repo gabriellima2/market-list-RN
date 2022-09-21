@@ -1,4 +1,13 @@
-import { Image, Modal as RNModal, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	Image,
+	Modal as RNModal,
+	SafeAreaView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View
+} from "react-native";
+import { Themes } from "../themes";
 
 const closeIcon = require("../../assets/close.png");
 
@@ -32,7 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-		backgroundColor: "rgba(0, 0, 0, 0.5)"
+		backgroundColor: Themes.colors.overlay
 	},
 	container: {
 		width: "85%",
@@ -40,7 +49,7 @@ const styles = StyleSheet.create({
 
 		borderRadius: 4,
 
-		backgroundColor: "#f1f1f1"
+		backgroundColor: Themes.colors.font
 	},
 	header: {
 		flexDirection: "row",
@@ -49,16 +58,16 @@ const styles = StyleSheet.create({
 
 		padding: 12,
 
-		backgroundColor: "#111111"
+		backgroundColor: Themes.colors.bgMain
 	},
 	headerText: {
-		color: "#f1f1f1",
+		color: Themes.colors.font,
 		fontWeight: "500",
 		fontSize: 16
 	},
 	closeButton: {
 		padding: 8,
 		borderRadius: 100,
-		backgroundColor: "#303030"
+		backgroundColor: Themes.colors.bgOverlay
 	},
 })

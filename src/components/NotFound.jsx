@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { Themes } from "../themes";
+
 export const NotFound = ({ children }) => (
 	<View style={styles.container}>
 		<Text style={styles.text}>{children}</Text>
@@ -16,6 +18,6 @@ const styles = StyleSheet.create({
 
 		fontSize: 16,
 		fontWeight: "bold",
-		color: "#F06363"
+		color: Themes.colors.alert,
 	}
 })

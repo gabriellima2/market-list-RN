@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-
 import { useDispatch } from "react-redux";
 
 import { addProduct } from "../../redux/slices/productSlice";
 
 import { ProductInput } from "./ProductInput";
 import { Modal } from "../Modal";
+
+import { Themes } from "../../themes";
 
 const addIcon = require("../../../assets/add.png")
 
@@ -29,9 +30,19 @@ export const AddNewProduct = () => {
 			>
 				<Image source={addIcon} resizeMode="contain"/>
 			</TouchableOpacity>
-			<Modal title="Adicionar Produto" isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-				<ProductInput handlePress={handleAddProduct} placeholder="Digite o nome do produto..." buttonText="Adicionar"  />
-			</Modal>
+			{isOpen &&
+				<Modal
+					title="Adicionar Produto"
+					isOpen={isOpen}
+					handleClose={() => setIsOpen(false)}
+				>
+					<ProductInput
+						handlePress={handleAddProduct}
+						placeholder="Digite o nome do produto..."
+						buttonText="Adicionar"
+					/>
+				</Modal>
+			}
 		</>
 	);
 }
@@ -41,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-		backgroundColor: "rgba(0, 0, 0, 0.5)"
+		backgroundColor: Themes.colors.overlay,
 	},
 	container: {
 		width: "85%",
@@ -49,21 +60,7 @@ const styles = StyleSheet.create({
 
 		borderRadius: 4,
 
-		backgroundColor: "#f1f1f1"
-	},
-	header: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-
-		padding: 12,
-
-		backgroundColor: "#111111"
-	},
-	headerText: {
-		color: "#f1f1f1",
-		fontWeight: "500",
-		fontSize: 16
+		backgroundColor: Themes.colors.contrast
 	},
 	content: {
 		flex: 1,
@@ -81,32 +78,6 @@ const styles = StyleSheet.create({
 		right: 24,
 		zIndex: 1000,
 
-		backgroundColor: "#202020",
+		backgroundColor: Themes.colors.bgOverlay
 	},
-	closeButton: {
-		padding: 8,
-		borderRadius: 100,
-		backgroundColor: "#303030"
-	},
-	input: {
-		width: "100%",
-
-		borderBottomWidth: 1,
-		paddingVertical: 0,
-		paddingHorizontal: 8
-	},
-	addButton: {
-		width: "100%",
-
-		padding: 16,
-		borderRadius: 4,
-		marginTop: 16,
-
-		backgroundColor: "#111111",
-	},
-	addButtonText: {
-		color: "#f1f1f1",
-		fontWeight: "500",
-		textAlign: "center"
-	}
 })

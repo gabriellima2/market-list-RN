@@ -9,6 +9,8 @@ import { Title } from "../components/Title";
 
 import { useProductSelect } from "../redux/slices/productSlice";
 
+import { Themes } from "../themes";
+
 export const HomeScreen = () => {
 	const { list } = useSelector(useProductSelect);
 
@@ -39,12 +41,12 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
 	safeArea: {
 		flex: 1,
-		color: "#f1f1f1",
-		backgroundColor: "#111111"
+		color: Themes.colors.font,
+		backgroundColor: Themes.colors.bgMain
 	},
 	container: {
 		flex: 1,
-		color: "#f1f1f1",
+		color: Themes.colors.font,
 		paddingHorizontal: 16,
 	},
 })

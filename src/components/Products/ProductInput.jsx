@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
+import { Themes } from "../../themes";
+
 export const ProductInput = ({ buttonText, ...props }) => {
 	const [value, setValue] = useState(props.specificValue || "");
 
@@ -18,7 +20,10 @@ export const ProductInput = ({ buttonText, ...props }) => {
 			keyboardType="default"
 			placeholder={props.placeholder}
 		/>
-		<TouchableOpacity style={styles.confirmButton} onPress={handleConfirmButtonPress}>
+		<TouchableOpacity
+			style={styles.confirmButton}
+			onPress={handleConfirmButtonPress}
+		>
 			<Text style={styles.confirmButtonText}>{buttonText}</Text>
 		</TouchableOpacity>
 	</View>
@@ -47,10 +52,10 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		marginTop: 16,
 
-		backgroundColor: "#111111",
+		backgroundColor: Themes.colors.bgMain,
 	},
 	confirmButtonText: {
-		color: "#f1f1f1",
+		color: Themes.colors.font,
 		fontWeight: "500",
 		textAlign: "center"
 	}
