@@ -39,12 +39,16 @@ const ProductItem = (props) => {
 			<Text style={styles.name}>{props.name}</Text>
 			<View style={styles.buttons}>
 				<TouchableOpacity
+					accessible
+					accessibilityLabel="Editar Produto"
 					style={styles.editButton}
 					onPress={() => handlePress("edit")}
 				>
 					<Text style={styles.editButtonText}>Edit</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
+					accessible
+					accessibilityLabel="Remover Produto"
 					style={styles.removeButton}
 					onPress={() => handlePress("remove")}
 				>

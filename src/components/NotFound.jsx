@@ -4,7 +4,7 @@ import { Themes } from "../themes";
 
 export const NotFound = ({ children }) => (
 	<View style={styles.container}>
-		<Text style={styles.text}>{children}</Text>
+		<Text style={styles.text} accessibilityRole="alert">{children}</Text>
 	</View>
 );
 

@@ -12,15 +12,18 @@ export const ProductInput = ({ buttonText, ...props }) => {
 	}
 
 	return (
-		<View style={styles.content} >
+		<View style={styles.content}>
 		<TextInput
 			style={styles.input}
 			value={value}
 			onChangeText={setValue}
 			keyboardType="default"
 			placeholder={props.placeholder}
+			autoFocus={true}
 		/>
 		<TouchableOpacity
+			accessible
+			accessibilityLabel="Concluir ação"
 			style={styles.confirmButton}
 			onPress={handleConfirmButtonPress}
 		>

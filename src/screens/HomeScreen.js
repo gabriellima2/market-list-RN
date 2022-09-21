@@ -25,14 +25,16 @@ export const HomeScreen = () => {
 
 				<AddNewProduct />
 
-				{!list.length
-					? (
-						<NotFound>
-							Lista Vazia! Adicione produtos
-						</NotFound>
-					)
-					:<ProductList />
-				}
+				<View style={{flex: 1}} accessibilityLiveRegion="polite">
+					{!list.length
+						? (
+							<NotFound>
+								Lista Vazia! Adicione produtos
+							</NotFound>
+						)
+						:<ProductList />
+					}
+				</View>
 			</View>
 		</SafeAreaView>
 	);
