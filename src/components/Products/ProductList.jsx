@@ -22,13 +22,13 @@ const ProductItem = (props) => {
 					style={styles.editButton}
 					onPress={() => handlePress("edit")}
 				>
-					<Text>Editar</Text>
+					<Text style={styles.editButtonText}>Edit</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={styles.removeButton}
 					onPress={() => handlePress("remove")}
 				>
-					<Text>Remover</Text>
+					<Text style={styles.removeButtonText}>Del</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
@@ -40,43 +40,56 @@ export const ProductList = () => {
 
 	return (
 		<FlatList
+			style={styles.list}
 			data={list}
 			renderItem={({item}) => <ProductItem name={item.name} id={item.id} />}
+			keyExtractor={(item) => item.id}
 		/>
 	)
 }
 
 const styles = StyleSheet.create({
+	list: {
+		flex: 1,
+		marginTop: 32,
+	},
 	container: {
 		flexDirection: "row",
+		alignItems: "center",
 		justifyContent: "space-between",
 
-		marginTop: 32
-	},
-	name: {
-		fontSize: 20,
-
-	},
-	buttons: {
-		alignItems: "flex-start"
-	},
-	editButton: {
-		width: 100,
-
-		alignItems: "center",
-
-		borderRadius: 4,
-		padding: 8,
-		backgroundColor: "#f1f1f1",
-	},
-	removeButton: {
-		width: 100,
+		paddingVertical: 12,
+		paddingHorizontal: 20,
+		borderRadius: 8,
+		marginVertical: 4,
 
 		color: "#f1f1f1",
-		alignItems: "center",
 
-		borderRadius: 4,
+		backgroundColor: "#202020",
+	},
+	name: {
+		color: "#f1f1f1",
+		fontWeight: "bold",
+		fontSize: 16
+	},
+	buttons: {
+		alignItems: "center",
+	},
+	editButton: {
 		padding: 8,
-		backgroundColor: "#F06363",
+		borderRadius: 8,
+		backgroundColor: "#111111",
+		marginBottom: 8,
+	},
+	editButtonText: {
+		color: "#f1f1f1"
+	},
+	removeButton: {
+		padding: 8,
+		borderRadius: 8,
+		backgroundColor: "#E93333",
+	},
+	removeButtonText: {
+		color: "#f1f1f1"
 	}
 })

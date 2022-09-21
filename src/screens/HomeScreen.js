@@ -15,7 +15,7 @@ export const HomeScreen = () => {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<View style={styles.container}>
-				<StatusBar style="auto"/>
+				<StatusBar style="light"/>
 
 				<Title>
 					MARKETLIST
