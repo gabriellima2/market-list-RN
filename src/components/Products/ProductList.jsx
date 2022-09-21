@@ -1,18 +1,31 @@
+import { useState } from "react"
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 
-import { removeProduct, useProductSelect } from "../../redux/slices/productSlice"
+import { editProduct, removeProduct, useProductSelect } from "../../redux/slices/productSlice"
+import { Modal } from "../Modal"
+import { ProductInput } from "./ProductInput"
 
 const ProductItem = (props) => {
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const dispatch = useDispatch();
 
-	const handlePress = (action, id) => {
-		if (action === "edit") {}
+	const handlePress = (action) => {
+		if (action === "edit") {
+			setModalIsOpen(true);
+		}
 
 		if (action === "remove") {
 			return dispatch(removeProduct({ id: props.id }));
 		}
 	};
+
+	const handleEdit = (value) => {
+		if (value === props.name || !value) return;
+
+		setModalIsOpen(false);
+		return dispatch(editProduct({ id: props.id, name: value }));
+	}
 
 	return (
 		<View style={styles.container}>
@@ -31,6 +44,9 @@ const ProductItem = (props) => {
 					<Text style={styles.removeButtonText}>Del</Text>
 				</TouchableOpacity>
 			</View>
+			<Modal title="Editar Produto" handleClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
+				<ProductInput buttonText="Editar" placeholder="Digite o novo nome" handlePress={handleEdit} specificValue={props.name} />
+			</Modal>
 		</View>
 	)
 }

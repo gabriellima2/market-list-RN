@@ -1,55 +1,14 @@
 import { useState } from "react";
-import { Image, Modal, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { useDispatch } from "react-redux";
 
 import { addProduct } from "../../redux/slices/productSlice";
 
-const closeIcon = require("../../../assets/close.png")
+import { ProductInput } from "./ProductInput";
+import { Modal } from "../Modal";
+
 const addIcon = require("../../../assets/add.png")
-
-const AddProductModal = (props) => {
-	const [value, setValue] = useState("");
-
-	const handleAddButtonPress = () => {
-		props.handleAddProduct(value);
-		setValue("");
-	}
-
-	return (
-		<Modal
-			visible={props.isOpen}
-			transparent
-		>
-			<SafeAreaView style={styles.safeArea}>
-				<View style={styles.container}>
-					<View style={styles.header}>
-						<Text style={styles.headerText}>Adicione um produto</Text>
-
-						<TouchableOpacity
-							style={styles.closeButton}
-							onPress={props.handleClose}
-						>
-							<Image source={closeIcon} resizeMode="contain"/>
-						</TouchableOpacity>
-					</View>
-					<View style={styles.content} >
-						<TextInput
-							style={styles.input}
-							value={value}
-							onChangeText={setValue}
-							keyboardType="default"
-							placeholder="Digite o nome do produto"
-						/>
-						<TouchableOpacity style={styles.addButton} onPress={handleAddButtonPress}>
-							<Text style={styles.addButtonText}>Adicionar produto</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
-			</SafeAreaView>
-		</Modal>
-	)
-}
 
 export const AddNewProduct = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -70,11 +29,9 @@ export const AddNewProduct = () => {
 			>
 				<Image source={addIcon} resizeMode="contain"/>
 			</TouchableOpacity>
-			<AddProductModal
-				isOpen={isOpen}
-				handleClose={() => setIsOpen(false)}
-				handleAddProduct={handleAddProduct}
-			/>
+			<Modal title="Adicionar Produto" isOpen={isOpen} handleClose={() => setIsOpen(false)}>
+				<ProductInput handlePress={handleAddProduct} placeholder="Digite o nome do produto..." buttonText="Adicionar"  />
+			</Modal>
 		</>
 	);
 }

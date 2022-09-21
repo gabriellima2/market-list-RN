@@ -24,7 +24,17 @@ export const productSlice = createSlice({
 
 			state.list = listWithRemovedProduct;
 		},
-		editProduct: (state, action) => {}
+		editProduct: (state, action) => {
+			const listWithEditedProduct = state.list.filter((item) => {
+				if (item.id === action.payload.id) {
+					item.name = action.payload.name;
+				}
+
+				return item;
+			});
+
+			state.list = listWithEditedProduct;
+		}
 	}
 })
 
